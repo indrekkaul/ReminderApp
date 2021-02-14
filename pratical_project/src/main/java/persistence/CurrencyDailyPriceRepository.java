@@ -4,6 +4,7 @@ import model.CurrencyDailyPrice;
 import util.DBUtil;
 
 import javax.persistence.EntityManager;
+import java.util.List;
 
 public class CurrencyDailyPriceRepository {
     private EntityManager entityManager;
@@ -40,5 +41,13 @@ public class CurrencyDailyPriceRepository {
         }catch (Exception e){
             entityManager.getTransaction().rollback();
         }
+    }
+
+    public List<CurrencyDailyPrice> searchByCurrencyDailyPrice(CurrencyDailyPrice currencyDailyPrice){
+        String sql = "FROM CurrencyDailyPrice AS cdp" +
+                "WHERE cdp.currency.currencyId = :currencyId AND cdp.registerDate = :date";
+
+        return entityManager.createQuery(sql).setParameter("currencyId", currencyDailyPrice.getCurrency().getCurrencyId())
+                .setParameter("date", currencyDailyPrice.getRegisterDate()).getResultList();
     }
 }
