@@ -21,9 +21,8 @@ public class Transaction {
     @Column(name = "status")
     private String status;
 
-    @ManyToOne
-    @JoinColumn(name = "staff_id")
-    private Staff staffId;
+    @Column(name = "staff_id")
+    private int staffId;
 
     @Column(name = "wallet_order_total")
     private double walletOrderTotal;
@@ -35,11 +34,14 @@ public class Transaction {
     @JoinColumn(name = "payment_type_id")
     private PaymentType paymentType;
 
+    @ManyToOne
+    @JoinColumn(name = "staff_id")
+    private Staff staff;
 
     public Transaction() {
     }
 
-    public Transaction(int transactionId, Wallet walletId, int walletSum, String status, Staff staffId, double walletOrderTotal, Date dateRegister, PaymentType paymentType) {
+    public Transaction(int transactionId, Wallet walletId, int walletSum, String status, int staffId, double walletOrderTotal, Date dateRegister, PaymentType paymentType) {
         this.transactionId = transactionId;
         this.walletId = walletId;
         this.walletSum = walletSum;
@@ -82,11 +84,11 @@ public class Transaction {
         this.status = status;
     }
 
-    public Staff getStaffId() {
+    public int getStaffId() {
         return staffId;
     }
 
-    public void setStaffId(Staff staffId) {
+    public void setStaffId(int staffId) {
         this.staffId = staffId;
     }
 
@@ -115,11 +117,11 @@ public class Transaction {
     }
 
     public Staff getStaff() {
-        return staffId;
+        return staff;
     }
 
-    public void setStaff(Staff staffId) {
-        this.staffId = staffId;
+    public void setStaff(Staff staff) {
+        this.staff = staff;
     }
 
     @Override
