@@ -11,8 +11,9 @@ public class Transaction {
     @Column(name = "transaction_id")
     private int transactionId;
 
-    @Column(name = "wallet_id")
-    private int walletId;
+    @ManyToOne
+    @JoinColumn(name = "wallet_id")
+    private Wallet walletId;
 
     @Column(name = "wallet_sum")
     private int walletSum;
@@ -40,7 +41,7 @@ public class Transaction {
     public Transaction() {
     }
 
-    public Transaction(int transactionId, int walletId, int walletSum, String status, int staffId, double walletOrderTotal, Date dateRegister, PaymentType paymentType) {
+    public Transaction(int transactionId, Wallet walletId, int walletSum, String status, int staffId, double walletOrderTotal, Date dateRegister, PaymentType paymentType) {
         this.transactionId = transactionId;
         this.walletId = walletId;
         this.walletSum = walletSum;
@@ -59,11 +60,11 @@ public class Transaction {
         this.transactionId = transactionId;
     }
 
-    public int getWalletId() {
+    public Wallet getWalletId() {
         return walletId;
     }
 
-    public void setWalletId(int walletId) {
+    public void setWalletId(Wallet walletId) {
         this.walletId = walletId;
     }
 
