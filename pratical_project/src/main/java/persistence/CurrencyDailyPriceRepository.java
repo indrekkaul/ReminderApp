@@ -50,4 +50,22 @@ public class CurrencyDailyPriceRepository {
         return entityManager.createQuery(sql).setParameter("currencyId", currencyDailyPrice.getCurrency().getCurrencyId())
                 .setParameter("date", currencyDailyPrice.getRegisterDate()).getResultList();
     }
+
+
+    public void updateNewPrice(CurrencyDailyPrice currencyDailyPrice){
+        String sql = "UPDATE CurrencyInventory ci " +
+                "SET ci.newPrice = :newPrice " +
+                "WHERE ci.currencyDailyPriceId = :id" +
+                "AND ci.lastUpdate = :lastUpdate";
+
+        try {
+            entityManager.getTransaction().begin();
+            entityManager.createQuery(sql).setParameter("newPrice", currencyDailyPrice.getPrice())
+                    .setParameter("id", currencyDailyPrice.getId());
+            //update the parameter
+            entityManager.getTransaction().commit();
+        }catch (Exception e){
+            entityManager.getTransaction().rollback();
+        }
+    }
 }

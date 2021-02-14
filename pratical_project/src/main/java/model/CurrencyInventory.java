@@ -30,6 +30,10 @@ public class CurrencyInventory {
     @Column(name = "updated_in")
     private Date updatedIn;
 
+    public CurrencyInventory() {
+
+    }
+
     public CurrencyInventory(int currencyInventoryId, CurrencyDailyPrice currencyDailyPrice, double oldPrice, double newPrice, boolean isActive, int staffId, Date updatedIn) {
         this.currencyInventoryId = currencyInventoryId;
         this.currencyDailyPrice = currencyDailyPrice;

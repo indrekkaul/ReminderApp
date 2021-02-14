@@ -32,10 +32,24 @@ public class CurrencyDailyPriceController {
             //update_in - date now()
             //currencyInventoryRepository.save()
         //}
+        double oldPrice = 0;
+
         if(dailyPriceRepository.searchByCurrencyDailyPrice(currencyDailyPrice) != null){
-            currencyInventoryRepository.updateOldPriceWithCurrentNewPrice(currencyDailyPrice);
-            currencyInventoryRepository.updateNewPrice(currencyDailyPrice);
-            currencyInventoryRepository.updateUpdatedIn(currencyDailyPrice);
+            for (CurrencyDailyPrice curr: dailyPriceRepository.searchByCurrencyDailyPrice(currencyDailyPrice)) {
+                if(currencyDailyPrice.getId() == curr.getId()) {
+                    oldPrice = curr.getPrice();
+                }
+            }
+
+
+            dailyPriceRepository.updateNewPrice(currencyDailyPrice);
+
+            CurrencyInventory inventory = new CurrencyInventory();
+            inventory.setOldPrice(oldPrice);
+            inventory.setNewPrice(currencyDailyPrice.getPrice());
+            //inventory.setUpdatedIn();
+            currencyInventoryRepository.save(inventory);
+
         }
     }
 }
