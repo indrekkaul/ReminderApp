@@ -11,8 +11,9 @@ public class Transaction {
     @Column(name = "transaction_id")
     private int transactionId;
 
-    @Column(name = "wallet_id")
-    private int walletId;
+    @ManyToOne
+    @JoinColumn(name = "wallet_id")
+    private Wallet walletId;
 
     @Column(name = "wallet_sum")
     private int walletSum;
@@ -20,8 +21,9 @@ public class Transaction {
     @Column(name = "status")
     private String status;
 
-    @Column(name = "staff_id")
-    private int staffId;
+    @ManyToOne
+    @JoinColumn(name = "staff_id")
+    private Staff staffId;
 
     @Column(name = "wallet_order_total")
     private double walletOrderTotal;
@@ -33,14 +35,11 @@ public class Transaction {
     @JoinColumn(name = "payment_type_id")
     private PaymentType paymentType;
 
-    @ManyToOne
-    @JoinColumn(name = "staff_id")
-    private Staff staff;
 
     public Transaction() {
     }
 
-    public Transaction(int transactionId, int walletId, int walletSum, String status, int staffId, double walletOrderTotal, Date dateRegister, PaymentType paymentType) {
+    public Transaction(int transactionId, Wallet walletId, int walletSum, String status, Staff staffId, double walletOrderTotal, Date dateRegister, PaymentType paymentType) {
         this.transactionId = transactionId;
         this.walletId = walletId;
         this.walletSum = walletSum;
@@ -59,11 +58,11 @@ public class Transaction {
         this.transactionId = transactionId;
     }
 
-    public int getWalletId() {
+    public Wallet getWalletId() {
         return walletId;
     }
 
-    public void setWalletId(int walletId) {
+    public void setWalletId(Wallet walletId) {
         this.walletId = walletId;
     }
 
@@ -83,11 +82,11 @@ public class Transaction {
         this.status = status;
     }
 
-    public int getStaffId() {
+    public Staff getStaffId() {
         return staffId;
     }
 
-    public void setStaffId(int staffId) {
+    public void setStaffId(Staff staffId) {
         this.staffId = staffId;
     }
 
@@ -116,11 +115,11 @@ public class Transaction {
     }
 
     public Staff getStaff() {
-        return staff;
+        return staffId;
     }
 
-    public void setStaff(Staff staff) {
-        this.staff = staff;
+    public void setStaff(Staff staffId) {
+        this.staffId = staffId;
     }
 
     @Override

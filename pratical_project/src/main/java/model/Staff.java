@@ -22,6 +22,11 @@ public class Staff {
 
     @Column(name = "password")
     private String password;
+ 
+    @ManyToOne
+    @JoinColumn(name = "role_id")
+    private Role role;
+
 
     public Staff(int staffId, String firstName, String lastName, String username, String password) {
         this.staffId = staffId;
@@ -63,13 +68,12 @@ public class Staff {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
-    }
 
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public String getPassword() { return password; }
 
     @Override
     public String toString() {
