@@ -6,7 +6,7 @@ import persistence.RepositoryLoginStaff;
 public class LoginStaffController {
     RepositoryLoginStaff repositoryLoginStaff;
 
-    public LoginStaffController(RepositoryLoginStaff repositoryLoginStaff) {
+    public LoginStaffController() {
         this.repositoryLoginStaff = new RepositoryLoginStaff();
     }
 

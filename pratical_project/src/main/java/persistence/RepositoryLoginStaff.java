@@ -14,7 +14,7 @@ public class RepositoryLoginStaff {
     }
 
     public Staff searchUser(Staff staff) {
-        String sql = "from Staff as st where st.userName = :name";
+        String sql = "from Staff as st where st.username = :name";
 
         Staff staff1 = entityManager.createQuery(sql,Staff.class).setParameter("name" , staff.getUsername()).getSingleResult();
         return staff1;

@@ -1,5 +1,6 @@
 package gui;
 
+import controller.LoginStaffController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +11,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.Staff;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -24,10 +26,11 @@ public class LoginController implements Initializable {
 
     private Stage dialogStage = new Stage();
     private Scene scene;
+    private LoginStaffController loginStaffController;
 
 
     public LoginController() {
-
+        loginStaffController = new LoginStaffController();
     }
 
     @FXML
@@ -35,10 +38,17 @@ public class LoginController implements Initializable {
         String user = txtUser.getText().toString();
         String password = txtPassword.getText().toString();
 
+        Staff staff = new Staff();
+        staff.setUsername(user);
+        staff.setPassword(password);
+
+        boolean userValidated = loginStaffController.validateStaff(staff);
+
+
         try {
             //HERE YOU COMPARE USER AND PASSWORD FROM DATABASE - TABLE STAFF
-            if (user.equals("1") && password.equals("1")) {
-
+            //if (user.equals("1") && password.equals("1")) {
+            if(userValidated) {
                 infoBox("Login Successfull", "Success", null);
                 Node source = (Node) event.getSource();
                 dialogStage = (Stage) source.getScene().getWindow();

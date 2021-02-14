@@ -27,6 +27,11 @@ public class Staff {
     @JoinColumn(name = "role_id")
     private Role role;
 
+    public Staff() {
+
+    }
+
+
 
     public Staff(int staffId, String firstName, String lastName, String username, String password) {
         this.staffId = staffId;
