@@ -43,6 +43,14 @@ public class CurrencyDailyPrice {
         this.amountAvailable = amountAvailable;
     }
 
+    public Currency getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(Currency currency) {
+        this.currency = currency;
+    }
+
     public int getId() {
         return id;
     }
