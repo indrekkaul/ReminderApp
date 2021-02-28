@@ -4,24 +4,24 @@ import util.DBUtil;
 
 import javax.persistence.EntityManager;
 
-public class ListElementLocation {
+public class ListElementLocationRepository {
     private EntityManager entityManager;
 
-    public ListElementLocation() {
+    public ListElementLocationRepository() {
         entityManager = DBUtil.getEntityManager();
     }
 
-    public void save(ListElementLocation listElementLocation){
+    public void save(ListElementLocationRepository listElementLocationRepository){
         try{
             entityManager.getTransaction().begin();
-            entityManager.persist(listElementLocation);
+            entityManager.persist(listElementLocationRepository);
             entityManager.getTransaction().commit();
         }catch (Exception e){
             entityManager.getTransaction().rollback();
         }
     }
 
-    public void update(ListElementLocation listElementLocation){
+    public void update(ListElementLocationRepository listElementLocation){
         try{
             entityManager.getTransaction().begin();
             entityManager.merge(listElementLocation);
@@ -31,7 +31,7 @@ public class ListElementLocation {
         }
     }
 
-    public void delete(ListElementLocation listElementLocation){
+    public void delete(ListElementLocationRepository listElementLocation){
         try {
             entityManager.getTransaction().begin();
             entityManager.remove(listElementLocation);
