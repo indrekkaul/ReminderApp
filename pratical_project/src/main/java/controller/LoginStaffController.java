@@ -12,7 +12,9 @@ public class LoginStaffController {
 
     public boolean validateStaff(Staff staff) {
         Staff staff1 = repositoryLoginStaff.searchUser(staff);
-        if (staff1.getUsername().equals(staff.getUsername()) && staff1.getPassword().equals(staff.getPassword()))
+        if (staff1.getUsername()
+                .equals(staff.getUsername()) && staff1.getPassword()
+                .equals(staff.getPassword()))
             return true;
         else {
             return false;
