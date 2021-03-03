@@ -1,68 +1,75 @@
 package model;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name = "list_element_location")
 public class ListElementLocation {
 
-    @ManyToOne
-    @JoinColumn(name = "todo_id")
-    private int todo_id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int ListElementLocationId;
 
     @ManyToOne
-    @JoinColumn(name = "shop_list_id")
-    private int shopListId;
+    @JoinColumn(name = "todoId")
+    private ToDoList toDoList;
 
     @ManyToOne
-    @JoinColumn(name = "location_id")
-    private int locationId;
+    @JoinColumn(name = "shoplistid")
+    private ShopList shopList;
+
+    @ManyToOne
+    @JoinColumn(name = "locationid")
+    private Location location;
 
     public ListElementLocation() {
     }
 
-    public ListElementLocation(int todo_id, int shopListId, int locationId) {
-        this.todo_id = todo_id;
-        this.shopListId = shopListId;
-        this.locationId = locationId;
+    public ListElementLocation(int listElementLocationId, ToDoList toDoList, ShopList shopList, Location location) {
+        ListElementLocationId = listElementLocationId;
+        this.toDoList = toDoList;
+        this.shopList = shopList;
+        this.location = location;
     }
 
     @Override
     public String toString() {
         return "ListElementLocation{" +
-                "todo_id=" + todo_id +
-                ", shopListId=" + shopListId +
-                ", locationId=" + locationId +
+                "ListElementLocationId=" + ListElementLocationId +
+                ", toDoList=" + toDoList +
+                ", shopList=" + shopList +
+                ", location=" + location +
                 '}';
     }
 
-    public int getTodo_id() {
-        return todo_id;
+    public int getListElementLocationId() {
+        return ListElementLocationId;
     }
 
-    public ListElementLocation setTodo_id(int todo_id) {
-        this.todo_id = todo_id;
-        return this;
+    public void setListElementLocationId(int listElementLocationId) {
+        ListElementLocationId = listElementLocationId;
     }
 
-    public int getShopListId() {
-        return shopListId;
+    public ToDoList getToDoList() {
+        return toDoList;
     }
 
-    public ListElementLocation setShopListId(int shopListId) {
-        this.shopListId = shopListId;
-        return this;
+    public void setToDoList(ToDoList toDoList) {
+        this.toDoList = toDoList;
     }
 
-    public int getLocationId() {
-        return locationId;
+    public ShopList getShopList() {
+        return shopList;
     }
 
-    public ListElementLocation setLocationId(int locationId) {
-        this.locationId = locationId;
-        return this;
+    public void setShopList(ShopList shopList) {
+        this.shopList = shopList;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
     }
 }

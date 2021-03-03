@@ -3,7 +3,7 @@ package util;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-
+//JTA
 public class DBUtil {
 
     private static final String PERSISTENCE_UNIT_NAME = "PERSISTENCE_MYSQL";

@@ -3,17 +3,11 @@ package model;
 import javax.persistence.*;
 
 @Entity
-@Table(name="shop_list")
 public class ShopList {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "shop_list_id")
     private int shopListId;
-
-    @Column(name = "shop_list_description")
     private String shopListDescription;
-
-    @Column (name = "shop_list_quantity")
     private int shopListQuantity;
 
     public ShopList() {

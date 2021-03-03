@@ -6,15 +6,10 @@ import javax.persistence.*;
 
 
 @Entity
-@Table(name="todo_list")
-
 public class ToDoList {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "todo_id")
     private int todoId;
-
-    @Column(name="todo_description")
     private String toDoDescription;
 
     @Override

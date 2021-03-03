@@ -3,22 +3,13 @@ package model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "location")
 public class Location {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int locationId;
-
-    @Column(name = "location_name")
     private String locationName;
-
-    @Column(name = "location_address")
     private String locationAddress;
-
-    @Column(name = "location_latitude")
     private float locationLatitude;
-
-    @Column(name = "location_longitude")
     private float locationLongitude;
 
     public Location() {
